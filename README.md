@@ -12,14 +12,14 @@ For this plugin to work you need Twitter and Bit.ly configured from your side:
 
 # After You have your API Keys edit twitterpost.php
 /* Your Bit.Ly Keys:  */
-$bitlyKey          = "R_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-$bitlyLogin        = "yourloginname";
+$bitlyKey 
+$bitlyLogin
 
 /* Your Twitter Keys: */			  
-$consumerAPIkey    = "XXXXXXXXXXXXXXXXXXXXXXXXX";
-$consumerAPIsecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-$accessToken       = "XXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-$accessTokensecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+$consumerAPIkey
+$consumerAPIsecret
+$accessToken
+$accessTokensecret
 
 # And edit hashtag variable if you have hashtag for your site.
 $hashtag="#DokuMA #Makarska";
