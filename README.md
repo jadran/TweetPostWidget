@@ -1,5 +1,5 @@
 For this plugin to work you need to configure Twitter and Bit.ly from your side:
-And your site(posts) has to have twitter metatags, adding twitter meta is out of the scope here, google it.
+And your site has to have twitter metatags, adding twitter meta is out of the scope here, google it.
 
 "twitter:title"
 "twitter:image:src"
@@ -33,4 +33,8 @@ $hashtag="#DokuMA #Makarska";
 
 
 After this is done, zip the tweetwidget folder and upload as plugin in WordPress.
+
+You will see new widget on the right side of admin dashboard, paste url in text box and click "Send Tweet"
+If all api keys are correct and you have twitter metatags on your site you should see tweet on your twitter profile.
+Done.
 
