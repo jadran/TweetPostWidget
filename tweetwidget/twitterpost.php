@@ -16,13 +16,25 @@ $hashtag="#DokuMA #Makarska";
 
 /* POST input_url data */
 $input_url = $_POST["post_url"];
+if (filter_var($input_url, FILTER_VALIDATE_URL)) {
+  		echo "URL valid ";
+	} else {
+   	 	echo "URL invalid ";
+   		exit;
+}
 
 /* GET MetaData from link */
 $meta_url=get_meta_tags("$input_url");
 $title=($meta_url['twitter:title']);
 $image=($meta_url['twitter:image:src']);
 $space=" ";
-
+/* CHECK if we have MetaData from link */
+if(is_null($title))
+    {
+	  print "No Meta Tags in link ";
+      exit;
+    }
+	
 /* THE MUST: Fix Title Qoutation Marks */
 $clean_title=str_replace(
 	// &#8216; - LEFT SINGLE QUOTATION MARK  -> '
@@ -37,8 +49,8 @@ $clean_title=str_replace(
 	array("'","'",'','','','',"'","'"),
 	$title
 ); 
-
-/* START Bit.Ly URL PHP API */
+	
+/* START Bit.Ly PHP API */
 function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1')
 {
 	$bitly = 'http://api.bit.ly/shorten?version='.$version.'&longUrl='.urlencode($url).'&login='.$login.'&apiKey='.$appkey.'&format='.$format;
@@ -58,7 +70,7 @@ function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1')
 }
 $bitly_shorturl = make_bitly_url($input_url, $bitlyLogin, $bitlyKey,'json');
 
-/* Create Tweet form from metadata and bit.ly variables */
+/* Create Tweet from metadata and bit.ly variables */
 $tweet=$clean_title . $space . $hashtag  . $$space . $bitly_shorturl;
 print $tweet;	
 	
