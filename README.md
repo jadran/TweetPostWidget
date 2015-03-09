@@ -1,4 +1,7 @@
-For this plugin to work you need Twitter and Bit.ly configured from your side:
+For this plugin to work you need to configure Twitter and Bit.ly from your side:
+And your site(posts) has to have twitter metatags
+<meta name="twitter:title" content="">
+<meta name="twitter:image:src" content="">
 
 # Make Twitter App to get API Keys:
 - Consumer Key (API Key)			
