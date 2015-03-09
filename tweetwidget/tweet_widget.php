@@ -13,7 +13,7 @@ License: MIT
 add_action('wp_dashboard_setup', 'register_dokuma_tweet_widget_setup');
 
 /**
- * dodaj Dashboard Widget priko wp_add_dashboard_widget() funkcije
+ * dodaj Dashboard Widget priko add_meta_box() funkcije - desni dio dashboarda!
  */
 function register_dokuma_tweet_widget_setup() {
 	add_meta_box( 
