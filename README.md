@@ -11,14 +11,17 @@ For this plugin to work you need Twitter and Bit.ly configured from your side:
 - Bit.ly Login
 
 # After You have your API Keys edit twitterpost.php
-/* Your Bit.Ly Keys:  */
+
 $bitlyKey 
+
 $bitlyLogin
 
-/* Your Twitter Keys: */			  
 $consumerAPIkey
+
 $consumerAPIsecret
+
 $accessToken
+
 $accessTokensecret
 
 # And edit hashtag variable if you have hashtag for your site.
