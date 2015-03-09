@@ -71,7 +71,7 @@ function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1')
 $bitly_shorturl = make_bitly_url($input_url, $bitlyLogin, $bitlyKey,'json');
 
 /* Create Tweet from metadata and bit.ly variables */
-$tweet=$clean_title . $space . $hashtag  . $$space . $bitly_shorturl;
+$tweet=$clean_title . $space . $hashtag  . $space . $bitly_shorturl;
 print $tweet;	
 	
 /* START: CodeBird Twitter PHP API */
