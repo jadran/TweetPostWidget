@@ -16,12 +16,12 @@ function sendTweet() {
 
 function validateTweet() {
 	var valid = true;
-	$("#tweet-status").html("(processing...)");	
-	
 	if(!$("#post_url").val()) {
 		$("#post_url-info").html("(paste url)");
 		$("#post_url").css('background-color','#FFFFDF');
 		valid = false;
-	}
+	} else  {
+	$("#tweet-status").html("(processing...)");	
 	return valid;
+	}
 }
