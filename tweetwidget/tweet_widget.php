@@ -29,14 +29,14 @@ function register_dokuma_tweet_widget_setup() {
  * Main function Tweet Post Widget
  */
 function dokuma_tweet_widget() {
-	echo 'Write or Paste url of your post...';
-	echo '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>';
-	echo '<script type="text/javascript" src="../wp-content/plugins/tweetwidget/js/main.js"></script>';
 	
-	echo '<div class="inside"">
-	<textarea name="post_url" id="post_url" rows="1" style="width: 100%;"></textarea>
-	<span id="post_url-info" class="info"></span><br/>
-    <button name="submit" class="button button-primary" onClick="sendTweet();">Tweet Post</button>
+    wp_enqueue_script('tweet-post-ajax', plugin_dir_url( __FILE__ ) . 'js/main.js', array('jquery'), '1.0', true );
+?>	
+	
+	<p>Write or Paste url of your post...</p>
+	<input type="text" name="post_url" id="post_url"style="margin: 0 0 8px; width: 100%;" autocomplete="off">
+    <div id="submit-url-button"class="button button-primary">Tweet Post</div>
     <div id="tweet-status"></div>
-	</div>';			
+	
+<?php
 }
