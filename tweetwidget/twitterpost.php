@@ -16,11 +16,9 @@ $hashtag="#DokuMA #Makarska";
 
 /* POST input_url data */
 $input_url = $_POST["post_url"];
-if (filter_var($input_url, FILTER_VALIDATE_URL)) {
-  		echo "URL valid ";
-	} else {
-   	 	echo "URL invalid ";
-   		exit;
+if (!filter_var($input_url, FILTER_VALIDATE_URL)) {
+	 echo '<p style="margin: 5px;">URL invalid</p>';
+   	 exit;
 }
 
 /* GET MetaData from link */
@@ -31,7 +29,7 @@ $space=" ";
 /* CHECK if we have MetaData from link */
 if(is_null($title))
     {
-	  print "No Meta Tags in link ";
+	  echo '<p style="margin: 5px;">No Meta Tags in link</p>';
       exit;
     }
 	
@@ -72,7 +70,7 @@ $bitly_shorturl = make_bitly_url($input_url, $bitlyLogin, $bitlyKey,'json');
 
 /* Create Tweet from metadata and bit.ly variables */
 $tweet=$clean_title . $space . $hashtag  . $space . $bitly_shorturl;
-print $tweet;	
+echo '<p style="margin: 5px;">' . $tweet . '</p>';	
 	
 /* START: CodeBird Twitter PHP API */
 require_once('api/codebird.php');
@@ -85,5 +83,5 @@ $params = array(
   'media[]' => $image
 );
 $reply = $cb->statuses_updateWithMedia($params);
-print "<p align='right' class='response'>Tweet Posted</p>";
+echo '<p align="right" class="response">Tweet Posted</p>';
 ?>

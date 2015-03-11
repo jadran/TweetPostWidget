@@ -20,12 +20,10 @@ jQuery(document).ready(function($) {
   	if(!$("#post_url").val()) {
   		$("#post_url").css('background-color','#FFFFDF');
   		valid = false;
-  	} else  {
-  	$("#tweet-status").html("(processing...)");	
+  	} else  { 
+	$("#tweet-status").html('<p style="margin: 5px;">(processing...)</p>');	
   	return valid;
   	}
   	}
-	
 	})
-
 });
