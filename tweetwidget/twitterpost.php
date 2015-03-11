@@ -83,5 +83,5 @@ $params = array(
   'media[]' => $image
 );
 $reply = $cb->statuses_updateWithMedia($params);
-echo '<p align="right" class="response">Tweet Posted</p>';
+echo '<p class="response" style="margin: 5px; text-align: right;">Tweet Posted</p>';
 ?>
