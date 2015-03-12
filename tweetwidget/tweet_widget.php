@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Tweet Dashboard Widget
-Plugin URI: www.melange.hr
-Description: Tweet posts from dashboard with post link
+Plugin URI: https://github.com/jadran/TweetPostWidget
+Description: Tweet posts from admin dashboard with post link
 Version: 0.1
 Author: Jadran Puharic
 License: MIT
