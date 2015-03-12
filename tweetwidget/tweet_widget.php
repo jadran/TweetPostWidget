@@ -31,6 +31,8 @@ function register_dokuma_tweet_widget_setup() {
 function dokuma_tweet_widget() {
 	
     wp_enqueue_script('tweet-post-ajax', plugin_dir_url( __FILE__ ) . 'js/main.js', array('jquery'), '1.0', true );
+	/* localize script to get proper url path in main.js */
+	wp_localize_script('tweet-post-ajax', 'url', array( "twitterpost_path"    => plugin_dir_url( __FILE__ ) . 'twitterpost.php' ) );
 ?>	
 	
 	<p>Write or Paste url of your post...</p>
