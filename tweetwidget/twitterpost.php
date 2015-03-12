@@ -4,10 +4,11 @@ require_once('config.php');
 
 /* POST input_url data */
 $input_url = $_POST["post_url"];
-if (!filter_var($input_url, FILTER_VALIDATE_URL)) {
+if (!filter_var($input_url, FILTER_VALIDATE_URL)) 
+	{
 	 echo '<p style="margin: 5px;">URL is invalid</p>';
    	 exit;
-}
+	}
 
 /* GET MetaData from link */
 $meta_url=get_meta_tags("$input_url");
@@ -55,15 +56,18 @@ function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1')
 	}
 }
 $bitly_shorturl = make_bitly_url($input_url, $bitlyLogin, $bitlyKey,'json');
+
+/* CHECK did we generated bit.ly url */
 if(is_null($bitly_shorturl))
-    {
-	  echo '<p style="margin: 5px;">Bit.Ly not generated, check API keys</p>';
-      exit;
-    }
+	{
+		echo '<p style="margin: 5px;">Bit.Ly not generated, check API keys</p>';
+		exit;
+	}
 
 /* Create Tweet from metadata and bit.ly variables */
 $tweet=$clean_title . $space . $hashtag  . $space . $bitly_shorturl;
 
+/* CHECK Tweet size */
 if (strlen($tweet)>140) 
 	{
    	 	echo '<p style="margin: 5px;">Tweet is to big removing hahstags...</p>';
@@ -86,5 +90,15 @@ $params = array(
   'media[]' => $image
 );
 $reply = $cb->statuses_updateWithMedia($params);
-echo '<p class="response" style="margin: 5px; text-align: right;">Tweet Posted</p>';
+
+/* CHECK tweet http status and did we realy posted it / 200(ok) 400(not)*/
+$tweet_status = $reply->httpstatus;
+if ($type == 200) 
+	{
+		echo '<p class="response" style="margin: 5px; text-align: right;">Tweet Posted</p>';
+	} 
+else 
+	{
+		echo '<p class="response" style="margin: 5px; text-align: right;">Tweet Not Posted, check API keys</p>';	
+	} 
 ?>
