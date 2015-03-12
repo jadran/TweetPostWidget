@@ -100,7 +100,7 @@ $reply = $cb->statuses_updateWithMedia($params);
 
 /* CHECK Tweet http status / 200(ok) 400(not)*/
 $tweet_status = $reply->httpstatus;
-if ($type == 200) 
+if ($tweet_status == 200) 
 {
 	/* status 200(ok) */
 	echo '<p class="response" style="margin: 5px; text-align: right;">Tweet Posted</p>';
