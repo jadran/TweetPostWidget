@@ -1,5 +1,7 @@
 <?php
-/* GET App Keys from Twitter and Bit.Ly */
+/* Make your own App on Twitter (put in read/write mode) and get App Keys
+ * SignUp to Bit.Ly and get bitlyKey from link: https://bitly.com/a/your_api_key
+ */
 
 /* Your Bit.Ly Keys:  */
 $bitlyKey          = "R_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";

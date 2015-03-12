@@ -1,2 +1,2 @@
-# TweetPostWidget MIT license
-# codebird php Twitter API is GPL 
+### TweetPostWidget MIT license
+### codebird php Twitter API is GPLv3
