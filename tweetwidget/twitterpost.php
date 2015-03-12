@@ -1,23 +1,11 @@
 <?php
-/* GET App Keys from Twitter and Bit.Ly */
-
-/* Your Bit.Ly Keys:  */
-$bitlyKey          = "R_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-$bitlyLogin        = "yourloginname";
-
-/* Your Twitter Keys: */			  
-$consumerAPIkey    = "XXXXXXXXXXXXXXXXXXXXXXXXX";
-$consumerAPIsecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-$accessToken       = "XXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-$accessTokensecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-
-/* Your HashTags */
-$hashtag="#DokuMA #Makarska";
+/* Load config.php with api keys */
+require_once('config.php');
 
 /* POST input_url data */
 $input_url = $_POST["post_url"];
 if (!filter_var($input_url, FILTER_VALIDATE_URL)) {
-	 echo '<p style="margin: 5px;">URL invalid</p>';
+	 echo '<p style="margin: 5px;">URL is invalid</p>';
    	 exit;
 }
 
@@ -26,10 +14,10 @@ $meta_url=get_meta_tags("$input_url");
 $title=($meta_url['twitter:title']);
 $image=($meta_url['twitter:image:src']);
 $space=" ";
-/* CHECK if we have MetaData from link */
+/* CHECK if we have MetaData in post */
 if(is_null($title))
     {
-	  echo '<p style="margin: 5px;">No Meta Tags in link</p>';
+	  echo '<p style="margin: 5px;">No Meta Tags in post</p>';
       exit;
     }
 	
@@ -67,11 +55,26 @@ function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1')
 	}
 }
 $bitly_shorturl = make_bitly_url($input_url, $bitlyLogin, $bitlyKey,'json');
+if(is_null($bitly_shorturl))
+    {
+	  echo '<p style="margin: 5px;">Bit.Ly not generated, check API keys</p>';
+      exit;
+    }
 
 /* Create Tweet from metadata and bit.ly variables */
 $tweet=$clean_title . $space . $hashtag  . $space . $bitly_shorturl;
-echo '<p style="margin: 5px;">' . $tweet . '</p>';	
-	
+
+if (strlen($tweet)>140) 
+	{
+   	 	echo '<p style="margin: 5px;">Tweet is to big removing hahstags...</p>';
+    	$tweet=$clean_title . $space . $bitly_shorturl;
+    	echo '<p style="margin: 5px;">' . $tweet . '</p>';
+	} 
+else 
+	{
+ 		echo '<p style="margin: 5px;">' . $tweet . '</p>';
+	}
+
 /* START: CodeBird Twitter PHP API */
 require_once('api/codebird.php');
 \Codebird\Codebird::setConsumerKey($consumerAPIkey, $consumerAPIsecret);
