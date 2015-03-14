@@ -63,7 +63,7 @@ if (strlen($tweet)>140)
 {
 		/* Tweet size bigger than 140 characters, try to remove hashtags and still post tweet */
     	echo '<p style="margin: 5px;">Tweet is to big removing hahstags...</p>';
-    	$tweet=$clean_title . $space . $bitly_shorturl;
+    	$tweet=$utf8_title . $space . $bitly_shorturl;
 } 
 
 /* START: CodeBird Twitter PHP API */
