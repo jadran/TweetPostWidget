@@ -25,21 +25,8 @@ if (is_null($title))
 	exit;
 }
 
-/* THE MUST: Fix Title Qoutation Marks */
-$clean_title = str_replace(
-
-	// &#8216; - LEFT SINGLE QUOTATION MARK  -> '
-	// &#8217; - RIGHT SINGLE QUOTATION      -> '
-	// &#8220; - LEFT DOUBLE QUOTATION MARK  -> "
-	// &#8221; - RIGHT DOUBLE QUOTATION MARK -> "
-	//       “ - LEFT DOUBLE QUOTATION MARK  -> "
-	//       ” - RIGHT DOUBLE QUOTATION MARK -> "
-	//       ’ - LEFT SINGLE  MARK 			 -> '
-	//       ‘ - RIGHT SINGLE  MARK 		 -> '
-	array('&#8216;', '&#8217;', '&#8220;', '&#8221;','“','”','’','‘'),
-	array("'","'",'','','','',"'","'"),
-	$title
-); 
+/* THE MUST: proper UTF8 handling of raw text */
+$utf8_title = preg_replace_callback("/(&#[0-9]+;)/", function($m) { return mb_convert_encoding($m[1], "UTF-8", "HTML-ENTITIES"); }, $title); 
 	
 /* START: Bit.Ly PHP API */
 function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1')
@@ -69,7 +56,7 @@ if (is_null($bitly_shorturl))
 }
 
 /* Create Tweet from metadata and bit.ly variables */
-$tweet=$clean_title . $space . $hashtag  . $space . $bitly_shorturl;
+$tweet=$utf8_title . $space . $hashtag  . $space . $bitly_shorturl;
 
 /* CHECK Tweet size */
 if (strlen($tweet)>140) 
